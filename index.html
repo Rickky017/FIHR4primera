@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuidado de la Casa Común</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #fce38a;
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 12px;
+            border: 4px solid #333;
+            box-shadow: 8px 8px 0px #333;
+            padding: 2rem;
+            position: relative;
+        }
+        .header-title {
+            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            color: white;
+            padding: 2.5rem;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            border-bottom: 4px solid #333;
+            box-shadow: 0 8px 0px #333;
+        }
+        .header-title h1, .header-title h2 {
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+        }
+        .section-card {
+            background-color: #ecf0f1;
+            border: 4px solid #333;
+            border-radius: 8px;
+            box-shadow: 6px 6px 0px #333;
+            transition: transform 0.3s ease-in-out;
+        }
+        .section-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 9px 9px 0px #333;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background-color: #e74c3c;
+            color: #fff;
+            border: 2px solid #333;
+            box-shadow: 4px 4px 0px #333;
+            line-height: 1;
+        }
+        .link-style {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: 700;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+        .link-style:hover {
+            text-decoration: underline;
+        }
+        .accordion-item {
+            cursor: pointer;
+            border-bottom: 2px dashed #bdc3c7;
+        }
+        .accordion-content {
+            display: none;
+            background-color: #fff;
+            padding: 1rem;
+            border: 2px dashed #bdc3c7;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+        .rotate-icon {
+            transition: transform 0.3s ease;
+        }
+        .rotate-icon.open {
+            transform: rotate(180deg);
+        }
+        .timeline-step {
+            transition: color 0.3s ease;
+        }
+        .timeline-step.active {
+            color: #2ecc71;
+            font-weight: 700;
+        }
+        .quiz-option label {
+            cursor: pointer;
+        }
+        .quiz-option input[type="radio"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid #333;
+            border-radius: 50%;
+            background-color: white;
+            position: relative;
+            outline: none;
+            cursor: pointer;
+        }
+        .quiz-option input[type="radio"]:checked {
+            background-color: #2ecc71;
+            border: 2px solid #333;
+        }
+        .quiz-option input[type="radio"]:checked::after {
+            content: '';
+            display: block;
+            width: 0.5rem;
+            height: 0.5rem;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .button-style {
+            background-color: #3498db;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            transition: all 0.1s ease;
+            cursor: pointer;
+            border: 2px solid #333;
+            box-shadow: 4px 4px 0px #333;
+        }
+        .button-style:hover {
+            background-color: #2980b9;
+            transform: translate(1px, 1px);
+            box-shadow: 3px 3px 0px #333;
+        }
+        .hidden {
+            display: none;
+        }
+        .reveal-btn {
+            background-color: #f39c12;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: 2px solid #333;
+            box-shadow: 3px 3px 0px #333;
+            transition: all 0.1s ease;
+        }
+        .reveal-btn:hover {
+            transform: translate(1px, 1px);
+            box-shadow: 2px 2px 0px #333;
+        }
+        .revealed-text {
+            display: none;
+            padding: 0.5rem;
+            background-color: #fff;
+            border: 2px dashed #333;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+
+    <header class="header-title text-center mb-10 shadow-lg">
+        <h1 class="text-3xl md:text-5xl font-bold mb-2">¡Unidad 1!</h1>
+        <h2 class="text-xl md:text-3xl font-medium">¡A cuidar nuestro planeta!</h2>
+        <p class="text-sm md:text-md font-medium mt-2">Viernes, 12 de septiembre de 2025</p>
+        <p class="text-sm md:text-md font-medium mt-2">Docente: Ing. Luis Alejandro Ricardo Reyes</p>
+        <p class="text-sm md:text-md font-medium">Centro Educativo en artes Eduardo Brito</p>
+    </header>
+
+    <!-- Main container with timeline and content -->
+    <div class="flex flex-col md:flex-row max-w-7xl mx-auto space-y-10 md:space-y-0 md:space-x-12">
+
+        <!-- Timeline or progress - Vertical on the left side -->
+        <div class="md:w-40 flex-shrink-0 flex justify-center md:flex-col md:justify-start md:items-start text-gray-400 mb-10 space-y-4 md:space-y-6">
+            <div id="step-inicio" class="timeline-step text-center md:text-left active">
+                <span class="block text-2xl md:text-3xl mb-1">•</span>
+                <span>Inicio</span>
+            </div>
+            <div class="w-1 md:h-20 h-1 bg-green-200 rounded-full md:self-start"></div>
+            <div id="step-desarrollo" class="timeline-step text-center md:text-left">
+                <span class="block text-2xl md:text-3xl mb-1">•</span>
+                <span>Desarrollo</span>
+            </div>
+            <div class="w-1 md:h-20 h-1 bg-green-200 rounded-full md:self-start"></div>
+            <div id="step-cierre" class="timeline-step text-center md:text-left">
+                <span class="block text-2xl md:text-3xl mb-1">•</span>
+                <span>Cierre</span>
+            </div>
+        </div>
+
+        <!-- Main class content -->
+        <main class="flex-1 space-y-10">
+
+            <!-- Pedagogical Intention -->
+            <section class="section-card p-8">
+                <h2 class="section-title text-center">¡Misión: Conectar!</h2>
+                <p class="mb-6 leading-relaxed text-gray-700">
+                    El propósito de esta lección es que los estudiantes se conecten de manera activa y crítica con el concepto de la **ecología humana** como una responsabilidad personal y colectiva. Buscamos fomentar un entendimiento profundo sobre cómo nuestras acciones impactan el planeta, promoviendo el **pensamiento crítico** y la **toma de decisiones informadas** para contribuir a un desarrollo sostenible. La clase está diseñada para que, a través de la reflexión y la investigación, cada estudiante se sienta parte integral de la "Casa Común" y se motive a ser un agente de cambio positivo en su entorno.
+                </p>
+            </section>
+
+            <!-- START OF CLASS - Inductive Questions -->
+            <section id="inicio" class="section-card p-8">
+                <h2 class="section-title text-center">¡Entrenamiento Inicial!</h2>
+                <p class="mb-6 leading-relaxed text-gray-700">
+                    Antes de comenzar, piensa en lo siguiente:
+                </p>
+                <div class="space-y-4">
+                    <p class="text-lg font-semibold text-green-700">Competencia: ¡Ser un Guardián del Planeta!</p>
+                    <p class="text-lg font-semibold text-green-700">Preguntas para la discusión:</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 pl-4">
+                        <li>Observa a tu alrededor. ¿Qué elementos naturales (árboles, ríos) y qué elementos culturales (edificios, carreteras) ves? ¿Qué hace cada uno?</li>
+                        <li>¿Qué acciones puedes hacer HOY para cuidar un árbol o un río en tu comunidad?</li>
+                        <li>¿Cómo crees que el comportamiento de las personas influye en el equilibrio entre estos dos tipos de elementos?</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- DEVELOPMENT OF CLASS - Discovery concepts -->
+            <section id="desarrollo" class="section-card p-8">
+                <h2 class="section-title text-center">¡Evolución del Conocimiento!</h2>
+                
+                <div class="p-6 md:p-8 bg-gray-50 rounded-lg shadow-inner mb-6">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Descubre los Conceptos</h3>
+                    <p class="mb-4 leading-relaxed text-gray-700">El papa Francisco, en los numerales del 20 al 22 de la Encíclica Laudato Si, nos advierte que los cambios en la sociedad son deseables, pero se vuelven preocupantes cuando reducen la calidad de vida del mundo y de la mayoría de las personas.</p>
+                    <div class="space-y-4">
+                        <!-- Accordion for definitions -->
+                        <div class="border-b pb-4">
+                            <div class="accordion-item flex justify-between items-center text-lg font-semibold text-gray-800">
+                                <span>Gases de efecto invernadero</span>
+                                <svg class="w-6 h-6 rotate-icon text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                            <div class="accordion-content pt-2 text-gray-600">
+                                <p>Son los componentes gaseosos de la atmósfera, tanto naturales como antropógenos, que absorben y remiten radiación infrarroja. (RAE)</p>
+                            </div>
+                        </div>
+
+                        <div class="border-b pb-4">
+                            <div class="accordion-item flex justify-between items-center text-lg font-semibold text-gray-800">
+                                <span>Ecología humana</span>
+                                <svg class="w-6 h-6 rotate-icon text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                            <div class="accordion-content pt-2 text-gray-600">
+                                <p>Estudia las relaciones entre la población y las organizaciones sociales con el ecosistema, hasta las relaciones del medio ambiente con la tecnología y el entorno.</p>
+                            </div>
+                        </div>
+
+                        <div class="border-b pb-4">
+                            <div class="accordion-item flex justify-between items-center text-lg font-semibold text-gray-800">
+                                <span>Encíclica</span>
+                                <svg class="w-6 h-6 rotate-icon text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                            <div class="accordion-content pt-2 text-gray-600">
+                                <p>Es una carta solemne que dirige el sumo pontífice a todos los obispos y fieles del orbe católico. (RAE)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEW PRACTICAL EXERCISE -->
+                <div class="mt-8 p-6 md:p-8 bg-gray-100 rounded-lg shadow-inner">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Misión Práctica: ¡Investiga tu Entorno!</h3>
+                    <p class="mb-4 leading-relaxed text-gray-700">
+                        Forma un equipo de tres personas. Observa y anota en tu cuaderno 5 elementos naturales y 5 elementos culturales que encuentres en el área de la escuela. Luego, discutan en equipo la siguiente pregunta: ¿Cómo la tecnología influye en el equilibrio entre estos elementos?
+                    </p>
+                    <p class="text-center font-semibold text-green-700 mt-4">¡Prepárense para compartir sus hallazgos con la clase!</p>
+                </div>
+
+                <div class="mt-8 p-6 md:p-8 bg-gray-50 rounded-lg shadow-inner">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Energías renovables en República Dominicana</h3>
+                    <p class="mb-4 leading-relaxed text-gray-700">La República Dominicana se ha convertido en líder del Caribe en producción de energía renovable, principalmente eólica y solar.</p>
+                    <p class="mb-4 text-center">
+                        <a href="https://presidencia.gob.do/noticias/rd-se-convierte-en-lider-del-caribe-en-produccion-de-energia-renovable" target="_blank" class="link-style">
+                            Lee la noticia completa aquí.
+                        </a>
+                    </p>
+                    <p class="text-lg font-semibold text-green-700">Preguntas sobre la noticia:</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 pl-4">
+                        <li>¿Qué es la energía renovable?</li>
+                        <li>¿Cómo beneficia a nuestra casa la energía renovable?</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- CLOSE OF CLASS -->
+            <section id="cierre" class="section-card p-8">
+                <h2 class="section-title text-center">¡Cierre de la Batalla!</h2>
+                
+                <div class="mb-8">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Actividades para el hogar</h3>
+                    <ul class="list-decimal list-inside space-y-4 text-gray-700">
+                        <li>Identifico junto a un compañero de clase: ¿Cuáles tipos o formas de contaminación se produce en el sector donde vivo? Comparto en la próxima clase los resultados obtenidos de la identificación y sus consecuencias. Puedo presentar con imágenes y video.</li>
+                        <li>Investigo con adultos mayores: ¿cuáles cambios se han manifestado en el medio ambiente en los últimos diez años en el sector donde vive? Plasmo en una cartulina o papelógrafo los datos obtenidos con imágenes para compartir en clase.</li>
+                        <li>Investigar los principios y características de la ecología humana, puedes presentar tu investigación mediante una infografía.</li>
+                        <li>Leo el siguiente texto y respondo a las preguntas en el cuaderno: <br>
+                        Los elementos naturales son aquellos que se encuentran en la naturaleza y que no han sido intervenidos por el ser humano, como los ríos, montañas, y la flora. Los elementos culturales, en cambio, son aquellos creados por el ser humano para satisfacer sus necesidades, como las carreteras y los edificios. Una ecología humana sostenible requiere un equilibrio entre estos dos elementos.</li>
+                    </ul>
+                </div>
+
+                <!-- EVALUATION -->
+                <div>
+                    <h3 class="text-xl md:text-2xl font-bold my-6 text-center text-gray-800">¡Gimnasio del Conocimiento!</h3>
+                    <p class="mb-4 text-center text-gray-600">Por favor, completa los siguientes datos antes de responder el cuestionario.</p>
+                    <div class="space-y-6">
+                        <div>
+                            <label for="studentName" class="block font-semibold text-gray-700 mb-2">Nombre del Entrenador:</label>
+                            <input type="text" id="studentName" class="w-full p-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-green-500 font-inter" placeholder="Escribe tu nombre aquí...">
+                        </div>
+                        <div>
+                            <label for="course" class="block font-semibold text-gray-700 mb-2">Curso:</label>
+                            <input type="text" id="course" class="w-full p-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-green-500 font-inter" placeholder="Ej: 4to B">
+                        </div>
+                        <div>
+                            <label for="section" class="block font-semibold text-gray-700 mb-2">Sección:</label>
+                            <input type="text" id="section" class="w-full p-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-green-500 font-inter" placeholder="Ej: A">
+                        </div>
+                        <div>
+                            <label for="orderNumber" class="block font-semibold text-gray-700 mb-2">Número de orden:</label>
+                            <input type="number" id="orderNumber" class="w-full p-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-green-500 font-inter" placeholder="Ej: 15">
+                        </div>
+                        <!-- New timer display -->
+                        <div id="quiz-timer" class="text-center font-bold text-lg text-green-700 hidden">
+                            <span id="timerDisplay">0m 0s</span>
+                        </div>
+                        <div id="quiz-questions" class="space-y-4">
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <p class="font-semibold text-gray-800 mb-2">1. Según el texto, ¿qué estudia la Ecología Humana?</p>
+                                <ul class="space-y-2 quiz-option">
+                                    <li><input type="radio" name="q1" value="B" class="mr-2" id="q1b"> <label for="q1b">Las relaciones entre la población, organizaciones sociales y el ecosistema.</label></li>
+                                    <li><input type="radio" name="q1" value="A" class="mr-2" id="q1a"> <label for="q1a">El estudio de los gases de la atmósfera.</label></li>
+                                    <li><input type="radio" name="q1" value="C" class="mr-2" id="q1c"> <label for="q1c">La historia del Papa Francisco.</label></li>
+                                </ul>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <p class="font-semibold text-gray-800 mb-2">2. ¿Qué es una Encíclica, según el texto?</p>
+                                <ul class="space-y-2 quiz-option">
+                                    <li><input type="radio" name="q2" value="B" class="mr-2" id="q2b"> <label for="q2b">Una carta solemne del sumo pontífice.</label></li>
+                                    <li><input type="radio" name="q2" value="A" class="mr-2" id="q2a"> <label for="q2a">Un tipo de energía renovable.</label></li>
+                                    <li><input type="radio" name="q2" value="C" class="mr-2" id="q2c"> <label for="q2c">Un libro de historia.</label></li>
+                                </ul>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <p class="font-semibold text-gray-800 mb-2">3. ¿Qué tipo de energía renovable se destaca en República Dominicana?</p>
+                                <ul class="space-y-2 quiz-option">
+                                    <li><input type="radio" name="q3" value="A" class="mr-2" id="q3a"> <label for="q3a">Eólica y solar.</label></li>
+                                    <li><input type="radio" name="q3" value="B" class="mr-2" id="q3b"> <label for="q3b">Fósil y nuclear.</label></li>
+                                    <li><input type="radio" name="q3" value="C" class="mr-2" id="q3c"> <label for="q3c">De agua.</label></li>
+                                </ul>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <p class="font-semibold text-gray-800 mb-2">4. De acuerdo con las actividades para el hogar, ¿cuál es un ejemplo de un "elemento natural"?</p>
+                                <ul class="space-y-2 quiz-option">
+                                    <li><input type="radio" name="q4" value="B" class="mr-2" id="q4b"> <label for="q4b">Un río.</label></li>
+                                    <li><input type="radio" name="q4" value="A" class="mr-2" id="q4a"> <label for="q4a">Un edificio.</label></li>
+                                    <li><input type="radio" name="q4" value="C" class="mr-2" id="q4c"> <label for="q4c">Una carretera.</label></li>
+                                </ul>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <p class="font-semibold text-gray-800 mb-2">5. Según el texto, ¿qué son los Gases de efecto invernadero?</p>
+                                <ul class="space-y-2 quiz-option">
+                                    <li><input type="radio" name="q5" value="C" class="mr-2" id="q5c"> <label for="q5c">Componentes gaseosos de la atmósfera que absorben y remiten radiación infrarroja.</label></li>
+                                    <li><input type="radio" name="q5" value="A" class="mr-2" id="q5a"> <label for="q5a">Un tipo de energía renovable.</label></li>
+                                    <li><input type="radio" name="q5" value="B" class="mr-2" id="q5b"> <label for="q5b">Una carta solemne del sumo pontífice.</label></li>
+                                    <li><input type="radio" name="q5" value="D" class="mr-2" id="q5d"> <label for="q5d">Los elementos naturales que se encuentran en la naturaleza.</label></li>
+                                </ul>
+                            </div>
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <p class="font-semibold text-gray-800 mb-2">6. Según el ejercicio práctico, un ejemplo de un "elemento cultural" es:</p>
+                                <ul class="space-y-2 quiz-option">
+                                    <li><input type="radio" name="q6" value="C" class="mr-2" id="q6c"> <label for="q6c">La cancha de baloncesto de la escuela.</label></li>
+                                    <li><input type="radio" name="q6" value="A" class="mr-2" id="q6a"> <label for="q6a">Un árbol.</label></li>
+                                    <li><input type="radio" name="q6" value="B" class="mr-2" id="q6b"> <label for="q6b">Un río.</label></li>
+                                    <li><input type="radio" name="q6" value="D" class="mr-2" id="q6d"> <label for="q6d">Una montaña.</label></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button onclick="calculateScore()" id="submitBtn" class="button-style">
+                                ¡Calcular Puntuación!
+                            </button>
+                            <div id="results" class="mt-6 text-xl font-bold"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Logic for the accordion ---
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const content = item.nextElementSibling;
+                    const icon = item.querySelector('.rotate-icon');
+                    if (content.style.display === 'block') {
+                        content.style.display = 'none';
+                        icon.classList.remove('open');
+                    } else {
+                        content.style.display = 'block';
+                        icon.classList.add('open');
+                    }
+                });
+            });
+
+            // --- Logic for the timeline ---
+            const sections = document.querySelectorAll('main section');
+            const timelineSteps = document.querySelectorAll('.timeline-step');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.id;
+                        timelineSteps.forEach(step => {
+                            if (step.id === `step-${sectionId}`) {
+                                step.classList.add('active');
+                            } else {
+                                step.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+            // --- Logic for the quiz and timer ---
+            const quizTimer = document.getElementById('quiz-timer');
+            const timerDisplay = document.getElementById('timerDisplay');
+            let startTime;
+            let timerInterval;
+
+            const formInputs = document.querySelectorAll('#studentName, #course, #section, #orderNumber');
+            const quizQuestions = document.getElementById('quiz-questions');
+
+            // Event to start the timer and quiz
+            formInputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    if (!timerInterval) {
+                        quizTimer.classList.remove('hidden');
+                        startTime = Date.now();
+                        timerInterval = setInterval(() => {
+                            const elapsedTime = Date.now() - startTime;
+                            const minutes = Math.floor(elapsedTime / 60000);
+                            const seconds = Math.floor((elapsedTime % 60000) / 1000);
+                            timerDisplay.textContent = `${minutes}m ${seconds}s`;
+                        }, 1000);
+                    }
+                });
+            });
+
+            // Function to calculate the score
+            window.calculateScore = function() {
+                clearInterval(timerInterval);
+
+                const studentName = document.getElementById('studentName').value.trim();
+                const course = document.getElementById('course').value.trim();
+                const section = document.getElementById('section').value.trim();
+                const orderNumber = document.getElementById('orderNumber').value.trim();
+                const resultsDiv = document.getElementById('results');
+
+                if (!studentName || !course || !section || !orderNumber) {
+                    resultsDiv.textContent = 'Por favor, complete todos los datos antes de enviar.';
+                    resultsDiv.style.color = '#dc2626';
+                    return;
+                }
+
+                const answers = {
+                    q1: 'B',
+                    q2: 'B',
+                    q3: 'A',
+                    q4: 'B',
+                    q5: 'C',
+                    q6: 'C'
+                };
+                let correctCount = 0;
+                let answeredCount = 0;
+
+                for (let i = 1; i <= Object.keys(answers).length; i++) {
+                    const questionName = `q${i}`;
+                    const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                    
+                    if (selectedOption) {
+                        answeredCount++;
+                        if (selectedOption.value === answers[questionName]) {
+                            correctCount++;
+                        }
+                    }
+                }
+
+                if (answeredCount < Object.keys(answers).length) {
+                    resultsDiv.textContent = 'Por favor, responde todas las preguntas.';
+                    resultsDiv.style.color = '#dc2626';
+                } else {
+                    const totalQuestions = Object.keys(answers).length;
+                    const finalScore = Math.round((correctCount / totalQuestions) * 100);
+                    
+                    resultsDiv.innerHTML = `
+                        <p class="mb-2"><strong>Resultados para ${studentName}:</strong></p>
+                        <p>Puntaje: ${correctCount} / ${totalQuestions}</p>
+                        <p>Calificación: ${finalScore}%</p>
+                        <p>Tiempo de finalización: ${timerDisplay.textContent}</p>
+                    `;
+                    resultsDiv.style.color = finalScore >= 70 ? '#10b981' : '#dc2626';
+                }
+            };
+        });
+    </script>
+</body>
+</html>
