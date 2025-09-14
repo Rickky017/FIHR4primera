@@ -84,45 +84,6 @@
         .rotate-icon.open {
             transform: rotate(180deg);
         }
-        .timeline-step {
-            transition: color 0.3s ease;
-        }
-        .timeline-step.active {
-            color: #2ecc71;
-            font-weight: 700;
-        }
-        .quiz-option label {
-            cursor: pointer;
-        }
-        .quiz-option input[type="radio"] {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            width: 1rem;
-            height: 1rem;
-            border: 2px solid #333;
-            border-radius: 50%;
-            background-color: white;
-            position: relative;
-            outline: none;
-            cursor: pointer;
-        }
-        .quiz-option input[type="radio"]:checked {
-            background-color: #2ecc71;
-            border: 2px solid #333;
-        }
-        .quiz-option input[type="radio"]:checked::after {
-            content: '';
-            display: block;
-            width: 0.5rem;
-            height: 0.5rem;
-            background-color: white;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
         .button-style {
             background-color: #3498db;
             color: white;
@@ -142,25 +103,17 @@
         .hidden {
             display: none;
         }
-        .reveal-btn {
-            background-color: #f39c12;
-            color: #fff;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            border: 2px solid #333;
-            box-shadow: 3px 3px 0px #333;
-            transition: all 0.1s ease;
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
         }
-        .reveal-btn:hover {
-            transform: translate(1px, 1px);
-            box-shadow: 2px 2px 0px #333;
-        }
-        .revealed-text {
-            display: none;
-            padding: 0.5rem;
-            background-color: #fff;
-            border: 2px dashed #333;
-            margin-top: 1rem;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -170,144 +123,157 @@
         <h1 class="text-3xl md:text-5xl font-bold mb-2">¡Unidad 1!</h1>
         <h2 class="text-xl md:text-3xl font-medium">¡A cuidar nuestro planeta!</h2>
         <p class="text-sm md:text-md font-medium mt-2">Viernes, 12 de septiembre de 2025</p>
-        <p class="text-sm md:text-md font-medium mt-2">Docente: Ing. Luis Alejandro Ricardo Reyes</p>
+        <p class="text-sm md:text-md font-medium">Docente: Ing. Luis Alejandro Ricardo Reyes</p>
         <p class="text-sm md:text-md font-medium">Centro Educativo en artes Eduardo Brito</p>
     </header>
 
-    <!-- Main container with timeline and content -->
-    <div class="flex flex-col md:flex-row max-w-7xl mx-auto space-y-10 md:space-y-0 md:space-x-12">
-
-        <!-- Timeline or progress - Vertical on the left side -->
-        <div class="md:w-40 flex-shrink-0 flex justify-center md:flex-col md:justify-start md:items-start text-gray-400 mb-10 space-y-4 md:space-y-6">
-            <div id="step-inicio" class="timeline-step text-center md:text-left active">
-                <span class="block text-2xl md:text-3xl mb-1">•</span>
-                <span>Inicio</span>
+    <!-- Main container -->
+    <div class="flex flex-col max-w-7xl mx-auto space-y-10">
+        
+        <!-- Main menu section -->
+        <section id="main-menu" class="section-card p-8 text-center">
+            <h2 class="section-title">¡Misión: Conectar!</h2>
+            <p class="mb-8 leading-relaxed text-gray-700">
+                El propósito de esta lección es que los estudiantes se conecten de manera activa y crítica con el concepto de la **ecología humana** como una responsabilidad personal y colectiva.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
+                <button id="show-inicio-btn" class="button-style">Inicio</button>
+                <button id="show-desarrollo-btn" class="button-style">Desarrollo</button>
+                <button id="show-cierre-btn" class="button-style">Cierre</button>
             </div>
-            <div class="w-1 md:h-20 h-1 bg-green-200 rounded-full md:self-start"></div>
-            <div id="step-desarrollo" class="timeline-step text-center md:text-left">
-                <span class="block text-2xl md:text-3xl mb-1">•</span>
-                <span>Desarrollo</span>
+        </section>
+
+        <!-- START OF CLASS - Inductive Questions -->
+        <section id="inicio" class="section-card p-8 hidden">
+            <h2 class="section-title text-center">¡Entrenamiento Inicial!</h2>
+            <p class="mb-6 leading-relaxed text-gray-700">
+                Antes de comenzar, piensa en lo siguiente:
+            </p>
+            <div class="space-y-4">
+                <p class="text-lg font-semibold text-green-700">Competencia: ¡Ser un Guardián del Planeta!</p>
+                <p class="text-lg font-semibold text-green-700">Preguntas para la discusión:</p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 pl-4">
+                    <li>Observa a tu alrededor. ¿Qué elementos naturales (árboles, ríos) y qué elementos culturales (edificios, carreteras) ves? ¿Qué hace cada uno?</li>
+                    <li>¿Qué acciones puedes hacer HOY para cuidar un árbol o un río en tu comunidad?</li>
+                    <li>¿Cómo crees que el comportamiento de las personas influye en el equilibrio entre estos dos tipos de elementos?</li>
+                </ul>
             </div>
-            <div class="w-1 md:h-20 h-1 bg-green-200 rounded-full md:self-start"></div>
-            <div id="step-cierre" class="timeline-step text-center md:text-left">
-                <span class="block text-2xl md:text-3xl mb-1">•</span>
-                <span>Cierre</span>
+            <div class="text-center mt-8">
+                <button id="back-to-menu-inicio" class="button-style">Regresar</button>
             </div>
-        </div>
+        </section>
 
-        <!-- Main class content -->
-        <main class="flex-1 space-y-10">
-
-            <!-- Pedagogical Intention -->
-            <section class="section-card p-8">
-                <h2 class="section-title text-center">¡Misión: Conectar!</h2>
-                <p class="mb-6 leading-relaxed text-gray-700">
-                    El propósito de esta lección es que los estudiantes se conecten de manera activa y crítica con el concepto de la **ecología humana** como una responsabilidad personal y colectiva. Buscamos fomentar un entendimiento profundo sobre cómo nuestras acciones impactan el planeta, promoviendo el **pensamiento crítico** y la **toma de decisiones informadas** para contribuir a un desarrollo sostenible. La clase está diseñada para que, a través de la reflexión y la investigación, cada estudiante se sienta parte integral de la "Casa Común" y se motive a ser un agente de cambio positivo en su entorno.
-                </p>
-            </section>
-
-            <!-- START OF CLASS - Inductive Questions -->
-            <section id="inicio" class="section-card p-8">
-                <h2 class="section-title text-center">¡Entrenamiento Inicial!</h2>
-                <p class="mb-6 leading-relaxed text-gray-700">
-                    Antes de comenzar, piensa en lo siguiente:
-                </p>
+        <!-- DEVELOPMENT OF CLASS - Discovery concepts -->
+        <section id="desarrollo" class="section-card p-8 hidden">
+            <h2 class="section-title text-center">¡Evolución del Conocimiento!</h2>
+            
+            <div class="p-6 md:p-8 bg-gray-50 rounded-lg shadow-inner mb-6">
+                <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Descubre los Conceptos</h3>
+                <p class="mb-4 leading-relaxed text-gray-700">El papa Francisco, en los numerales del 20 al 22 de la Encíclica Laudato Si, nos advierte que los cambios en la sociedad son deseables, pero se vuelven preocupantes cuando reducen la calidad de vida del mundo y de la mayoría de las personas.</p>
                 <div class="space-y-4">
-                    <p class="text-lg font-semibold text-green-700">Competencia: ¡Ser un Guardián del Planeta!</p>
-                    <p class="text-lg font-semibold text-green-700">Preguntas para la discusión:</p>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700 pl-4">
-                        <li>Observa a tu alrededor. ¿Qué elementos naturales (árboles, ríos) y qué elementos culturales (edificios, carreteras) ves? ¿Qué hace cada uno?</li>
-                        <li>¿Qué acciones puedes hacer HOY para cuidar un árbol o un río en tu comunidad?</li>
-                        <li>¿Cómo crees que el comportamiento de las personas influye en el equilibrio entre estos dos tipos de elementos?</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- DEVELOPMENT OF CLASS - Discovery concepts -->
-            <section id="desarrollo" class="section-card p-8">
-                <h2 class="section-title text-center">¡Evolución del Conocimiento!</h2>
-                
-                <div class="p-6 md:p-8 bg-gray-50 rounded-lg shadow-inner mb-6">
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Descubre los Conceptos</h3>
-                    <p class="mb-4 leading-relaxed text-gray-700">El papa Francisco, en los numerales del 20 al 22 de la Encíclica Laudato Si, nos advierte que los cambios en la sociedad son deseables, pero se vuelven preocupantes cuando reducen la calidad de vida del mundo y de la mayoría de las personas.</p>
-                    <div class="space-y-4">
-                        <!-- Accordion for definitions -->
-                        <div class="border-b pb-4">
-                            <div class="accordion-item flex justify-between items-center text-lg font-semibold text-gray-800">
-                                <span>Gases de efecto invernadero</span>
-                                <svg class="w-6 h-6 rotate-icon text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                            </div>
-                            <div class="accordion-content pt-2 text-gray-600">
-                                <p>Son los componentes gaseosos de la atmósfera, tanto naturales como antropógenos, que absorben y remiten radiación infrarroja. (RAE)</p>
-                            </div>
+                    <!-- Accordion for definitions -->
+                    <div class="border-b pb-4">
+                        <div class="accordion-item flex justify-between items-center text-lg font-semibold text-gray-800">
+                            <span>Gases de efecto invernadero</span>
+                            <svg class="w-6 h-6 rotate-icon text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
-
-                        <div class="border-b pb-4">
-                            <div class="accordion-item flex justify-between items-center text-lg font-semibold text-gray-800">
-                                <span>Ecología humana</span>
-                                <svg class="w-6 h-6 rotate-icon text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                            </div>
-                            <div class="accordion-content pt-2 text-gray-600">
-                                <p>Estudia las relaciones entre la población y las organizaciones sociales con el ecosistema, hasta las relaciones del medio ambiente con la tecnología y el entorno.</p>
-                            </div>
+                        <div class="accordion-content pt-2 text-gray-600">
+                            <p>Son los componentes gaseosos de la atmósfera, tanto naturales como antropógenos, que absorben y remiten radiación infrarroja. (RAE)</p>
                         </div>
+                    </div>
 
-                        <div class="border-b pb-4">
-                            <div class="accordion-item flex justify-between items-center text-lg font-semibold text-gray-800">
-                                <span>Encíclica</span>
-                                <svg class="w-6 h-6 rotate-icon text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                            </div>
-                            <div class="accordion-content pt-2 text-gray-600">
-                                <p>Es una carta solemne que dirige el sumo pontífice a todos los obispos y fieles del orbe católico. (RAE)</p>
-                            </div>
+                    <div class="border-b pb-4">
+                        <div class="accordion-item flex justify-between items-center text-lg font-semibold text-gray-800">
+                            <span>Ecología humana</span>
+                            <svg class="w-6 h-6 rotate-icon text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-content pt-2 text-gray-600">
+                            <p>Estudia las relaciones entre la población y las organizaciones sociales con el ecosistema, hasta las relaciones del medio ambiente con la tecnología y el entorno.</p>
+                        </div>
+                    </div>
+
+                    <div class="border-b pb-4">
+                        <div class="accordion-item flex justify-between items-center text-lg font-semibold text-gray-800">
+                            <span>Encíclica</span>
+                            <svg class="w-6 h-6 rotate-icon text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <div class="accordion-content pt-2 text-gray-600">
+                            <p>Es una carta solemne que dirige el sumo pontífice a todos los obispos y fieles del orbe católico. (RAE)</p>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- NEW PRACTICAL EXERCISE -->
-                <div class="mt-8 p-6 md:p-8 bg-gray-100 rounded-lg shadow-inner">
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Misión Práctica: ¡Investiga tu Entorno!</h3>
-                    <p class="mb-4 leading-relaxed text-gray-700">
-                        Forma un equipo de tres personas. Observa y anota en tu cuaderno 5 elementos naturales y 5 elementos culturales que encuentres en el área de la escuela. Luego, discutan en equipo la siguiente pregunta: ¿Cómo la tecnología influye en el equilibrio entre estos elementos?
+            <!-- NEW PRACTICAL EXERCISE -->
+            <div class="mt-8 p-6 md:p-8 bg-gray-100 rounded-lg shadow-inner">
+                <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Misión Práctica: ¡Investiga tu Entorno!</h3>
+                <p class="mb-4 leading-relaxed text-gray-700">
+                    Forma un equipo de tres personas. Observa y anota en tu cuaderno 5 elementos naturales y 5 elementos culturales que encuentres en el área de la escuela. Luego, discutan en equipo la siguiente pregunta: ¿Cómo la tecnología influye en el equilibrio entre estos elementos?
+                </p>
+                <p class="text-center font-semibold text-green-700 mt-4">¡Prepárense para compartir sus hallazgos con la clase!</p>
+            </div>
+
+            <div class="mt-8 p-6 md:p-8 bg-gray-50 rounded-lg shadow-inner">
+                <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Energías renovables en República Dominicana</h3>
+                <p class="mb-4 leading-relaxed text-gray-700">La República Dominicana se ha convertido en líder del Caribe en producción de energía renovable, principalmente eólica y solar.</p>
+                <p class="mb-4 text-center">
+                    <a href="https://presidencia.gob.do/noticias/rd-se-convierte-en-lider-del-caribe-en-produccion-de-energia-renovable" target="_blank" class="link-style">
+                        Lee la noticia completa aquí.
+                    </a>
+                </p>
+                <p class="text-lg font-semibold text-green-700">Preguntas sobre la noticia:</p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 pl-4">
+                    <li>¿Qué es la energía renovable?</li>
+                    <li>¿Cómo beneficia a nuestra casa la energía renovable?</li>
+                </ul>
+            </div>
+            <div class="text-center mt-8">
+                <button id="back-to-menu-desarrollo" class="button-style">Regresar</button>
+            </div>
+        </section>
+
+        <!-- CLOSE OF CLASS -->
+        <section id="cierre" class="section-card p-8 hidden">
+            <h2 class="section-title text-center">¡Cierre de la Batalla!</h2>
+            
+            <div class="flex justify-between items-center mb-6">
+                <button id="prevBtn" class="button-style px-4 py-2" disabled>Anterior</button>
+                <span id="activity-counter" class="text-lg font-bold text-gray-700">Actividad 1 de 5</span>
+                <button id="nextBtn" class="button-style px-4 py-2">Siguiente</button>
+            </div>
+
+            <div id="activities-container">
+                <!-- Activity 1: Identificación de Contaminación -->
+                <div id="activity-1" class="activity-item">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Actividad para el hogar 1</h3>
+                    <p class="leading-relaxed text-gray-700">Identifico junto a un compañero de clase: ¿Cuáles tipos o formas de contaminación se produce en el sector donde vivo? Comparto en la próxima clase los resultados obtenidos de la identificación y sus consecuencias. Puedo presentar con imágenes y video.</p>
+                </div>
+
+                <!-- Activity 2: Investigación con Adultos Mayores -->
+                <div id="activity-2" class="activity-item hidden">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Actividad para el hogar 2</h3>
+                    <p class="leading-relaxed text-gray-700">Investigo con adultos mayores: ¿cuáles cambios se han manifestado en el medio ambiente en los últimos diez años en el sector donde vive? Plasmo en una cartulina o papelógrafo los datos obtenidos con imágenes para compartir en clase.</p>
+                </div>
+
+                <!-- Activity 3: Investigación de Ecología Humana -->
+                <div id="activity-3" class="activity-item hidden">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Actividad para el hogar 3</h3>
+                    <p class="leading-relaxed text-gray-700">Investigar los principios y características de la ecología humana, puedes presentar tu investigación mediante una infografía.</p>
+                </div>
+
+                <!-- Activity 4: Preguntas del Texto -->
+                <div id="activity-4" class="activity-item hidden">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Actividad para el hogar 4</h3>
+                    <p class="leading-relaxed text-gray-700">Leo el siguiente texto y respondo a las preguntas en el cuaderno:</p>
+                    <p class="leading-relaxed text-gray-700 my-4 p-4 bg-gray-50 border-l-4 border-gray-300 rounded-lg">
+                        Los elementos naturales son aquellos que se encuentran en la naturaleza y que no han sido intervenidos por el ser humano, como los ríos, montañas, y la flora. Los elementos culturales, en cambio, son aquellos creados por el ser humano para satisfacer sus necesidades, como las carreteras y los edificios. Una ecología humana sostenible requiere un equilibrio entre estos dos elementos.
                     </p>
-                    <p class="text-center font-semibold text-green-700 mt-4">¡Prepárense para compartir sus hallazgos con la clase!</p>
                 </div>
 
-                <div class="mt-8 p-6 md:p-8 bg-gray-50 rounded-lg shadow-inner">
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Energías renovables en República Dominicana</h3>
-                    <p class="mb-4 leading-relaxed text-gray-700">La República Dominicana se ha convertido en líder del Caribe en producción de energía renovable, principalmente eólica y solar.</p>
-                    <p class="mb-4 text-center">
-                        <a href="https://presidencia.gob.do/noticias/rd-se-convierte-en-lider-del-caribe-en-produccion-de-energia-renovable" target="_blank" class="link-style">
-                            Lee la noticia completa aquí.
-                        </a>
-                    </p>
-                    <p class="text-lg font-semibold text-green-700">Preguntas sobre la noticia:</p>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700 pl-4">
-                        <li>¿Qué es la energía renovable?</li>
-                        <li>¿Cómo beneficia a nuestra casa la energía renovable?</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- CLOSE OF CLASS -->
-            <section id="cierre" class="section-card p-8">
-                <h2 class="section-title text-center">¡Cierre de la Batalla!</h2>
-                
-                <div class="mb-8">
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Actividades para el hogar</h3>
-                    <ul class="list-decimal list-inside space-y-4 text-gray-700">
-                        <li>Identifico junto a un compañero de clase: ¿Cuáles tipos o formas de contaminación se produce en el sector donde vivo? Comparto en la próxima clase los resultados obtenidos de la identificación y sus consecuencias. Puedo presentar con imágenes y video.</li>
-                        <li>Investigo con adultos mayores: ¿cuáles cambios se han manifestado en el medio ambiente en los últimos diez años en el sector donde vive? Plasmo en una cartulina o papelógrafo los datos obtenidos con imágenes para compartir en clase.</li>
-                        <li>Investigar los principios y características de la ecología humana, puedes presentar tu investigación mediante una infografía.</li>
-                        <li>Leo el siguiente texto y respondo a las preguntas en el cuaderno: <br>
-                        Los elementos naturales son aquellos que se encuentran en la naturaleza y que no han sido intervenidos por el ser humano, como los ríos, montañas, y la flora. Los elementos culturales, en cambio, son aquellos creados por el ser humano para satisfacer sus necesidades, como las carreteras y los edificios. Una ecología humana sostenible requiere un equilibrio entre estos dos elementos.</li>
-                    </ul>
-                </div>
-
-                <!-- EVALUATION -->
-                <div>
+                <!-- Evaluation -->
+                <div id="activity-5" class="activity-item hidden">
                     <h3 class="text-xl md:text-2xl font-bold my-6 text-center text-gray-800">¡Gimnasio del Conocimiento!</h3>
-                    <p class="mb-4 text-center text-gray-600">Por favor, completa los siguientes datos antes de responder el cuestionario.</p>
+                    <p id="user-info" class="mb-4 text-center text-gray-600">Por favor, espera mientras te conectas...</p>
                     <div class="space-y-6">
                         <div>
                             <label for="studentName" class="block font-semibold text-gray-700 mb-2">Nombre del Entrenador:</label>
@@ -383,20 +349,260 @@
                         </div>
                         <div class="text-center">
                             <button onclick="calculateScore()" id="submitBtn" class="button-style">
-                                ¡Calcular Puntuación!
+                                <span id="submit-text">¡Calcular Puntuación!</span>
+                                <div id="submit-loader" class="loader hidden mx-auto"></div>
                             </button>
                             <div id="results" class="mt-6 text-xl font-bold"></div>
                         </div>
+
+                        <div id="previous-scores" class="mt-8 p-6 md:p-8 bg-gray-100 rounded-lg shadow-inner hidden">
+                             <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Puntuaciones Anteriores</h3>
+                            <ul id="score-list" class="space-y-2"></ul>
+                        </div>
                     </div>
                 </div>
-            </section>
-        </main>
+            </div>
+            <div class="text-center mt-8">
+                <button id="back-to-menu-cierre" class="button-style">Regresar</button>
+            </div>
+        </section>
     </div>
 
-    <script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, addDoc, onSnapshot, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        
+        // Use the global variables provided by the environment
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let db, auth, userId;
+        setLogLevel('debug'); // Enable debug logging for Firestore
+
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        const sections = document.querySelectorAll('main section');
+        const mainMenuItems = document.querySelectorAll('#show-inicio-btn, #show-desarrollo-btn, #show-cierre-btn');
+        const backToMenuButtons = document.querySelectorAll('[id^="back-to-menu"]');
+        const formInputs = document.querySelectorAll('#studentName, #course, #section, #orderNumber');
+        const quizTimer = document.getElementById('quiz-timer');
+        const timerDisplay = document.getElementById('timerDisplay');
+        const resultsDiv = document.getElementById('results');
+        const submitBtn = document.getElementById('submitBtn');
+        const submitText = document.getElementById('submit-text');
+        const submitLoader = document.getElementById('submit-loader');
+        const previousScoresDiv = document.getElementById('previous-scores');
+        const scoreList = document.getElementById('score-list');
+        const userInfoSpan = document.getElementById('user-info');
+        const activities = document.querySelectorAll('.activity-item');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const activityCounter = document.getElementById('activity-counter');
+        
+        let startTime;
+        let timerInterval;
+        let currentActivityIndex = 0;
+
+        // Function to handle Firebase initialization and authentication
+        async function initializeFirebase() {
+            try {
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        userInfoSpan.innerHTML = `Conectado. Tu ID de usuario: <strong>${userId}</strong>`;
+                        // Listen for previous scores from Firestore
+                        setupScoreListener();
+                    } else {
+                         // Fallback to anonymous sign-in if no user is authenticated
+                        await signInAnonymously(auth);
+                    }
+                });
+
+                // Sign in with the custom token if provided
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                }
+
+            } catch (error) {
+                console.error("Error initializing Firebase:", error);
+                userInfoSpan.textContent = "Error al conectar. Por favor, recarga la página.";
+            }
+        }
+
+        // Set up a real-time listener for the user's past quiz scores
+        function setupScoreListener() {
+            if (!db || !userId) return;
+
+            const scoresRef = collection(db, `artifacts/${appId}/users/${userId}/quiz_results`);
+            
+            onSnapshot(scoresRef, (snapshot) => {
+                const scores = [];
+                snapshot.forEach(doc => {
+                    scores.push(doc.data());
+                });
+
+                // Sort scores by timestamp in descending order for the latest score first
+                scores.sort((a, b) => {
+                    if (a.timestamp && b.timestamp) {
+                        return b.timestamp.seconds - a.timestamp.seconds;
+                    }
+                    return 0;
+                });
+
+                // Display the previous scores
+                scoreList.innerHTML = '';
+                if (scores.length > 0) {
+                    previousScoresDiv.classList.remove('hidden');
+                    scores.forEach(score => {
+                        const listItem = document.createElement('li');
+                        const date = score.timestamp ? new Date(score.timestamp.seconds * 1000).toLocaleDateString("es-ES", {
+                            year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+                        }) : 'N/A';
+                        listItem.innerHTML = `
+                            <strong>Calificación: ${score.score}%</strong> - Tiempo: ${score.time} - Fecha: ${date}
+                        `;
+                        scoreList.appendChild(listItem);
+                    });
+                }
+            });
+        }
+
+        function showCurrentActivity() {
+            activities.forEach((activity, index) => {
+                activity.classList.add('hidden');
+                if (index === currentActivityIndex) {
+                    activity.classList.remove('hidden');
+                }
+            });
+            prevBtn.disabled = currentActivityIndex === 0;
+            nextBtn.disabled = currentActivityIndex === activities.length - 1;
+            activityCounter.textContent = `Actividad ${currentActivityIndex + 1} de ${activities.length}`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentActivityIndex > 0) {
+                currentActivityIndex--;
+                showCurrentActivity();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentActivityIndex < activities.length - 1) {
+                currentActivityIndex++;
+                showCurrentActivity();
+            }
+        });
+
+
+        // Function to calculate the score and save to Firestore
+        window.calculateScore = async function() {
+            // First, check if the Firebase connection and user authentication are ready
+            if (!db || !auth.currentUser) {
+                resultsDiv.textContent = 'Error: No se pudo conectar a la base de datos. Intenta recargar la página.';
+                resultsDiv.style.color = '#dc2626';
+                submitBtn.disabled = false;
+                submitText.classList.remove('hidden');
+                submitLoader.classList.add('hidden');
+                console.error("Database or user authentication is not ready.");
+                return;
+            }
+
+            clearInterval(timerInterval);
+            submitBtn.disabled = true;
+            submitText.classList.add('hidden');
+            submitLoader.classList.remove('hidden');
+
+            const studentName = document.getElementById('studentName').value.trim();
+            const course = document.getElementById('course').value.trim();
+            const section = document.getElementById('section').value.trim();
+            const orderNumber = document.getElementById('orderNumber').value.trim();
+            
+            if (!studentName || !course || !section || !orderNumber) {
+                resultsDiv.textContent = 'Por favor, complete todos los datos antes de enviar.';
+                resultsDiv.style.color = '#dc2626';
+                submitBtn.disabled = false;
+                submitText.classList.remove('hidden');
+                submitLoader.classList.add('hidden');
+                return;
+            }
+
+            const answers = {
+                q1: 'B', q2: 'B', q3: 'A', q4: 'B', q5: 'C', q6: 'C'
+            };
+            let correctCount = 0;
+            let answeredCount = 0;
+
+            for (let i = 1; i <= Object.keys(answers).length; i++) {
+                const questionName = `q${i}`;
+                const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                
+                if (selectedOption) {
+                    answeredCount++;
+                    if (selectedOption.value === answers[questionName]) {
+                        correctCount++;
+                    }
+                }
+            }
+
+            if (answeredCount < Object.keys(answers).length) {
+                resultsDiv.textContent = 'Por favor, responde todas las preguntas.';
+                resultsDiv.style.color = '#dc2626';
+                submitBtn.disabled = false;
+                submitText.classList.remove('hidden');
+                submitLoader.classList.add('hidden');
+                return;
+            } else {
+                const totalQuestions = Object.keys(answers).length;
+                const finalScore = Math.round((correctCount / totalQuestions) * 100);
+                const completionTime = timerDisplay.textContent;
+
+                // Display the results
+                resultsDiv.innerHTML = `
+                    <p class="mb-2"><strong>Resultados para ${studentName}:</strong></p>
+                    <p>Puntaje: ${correctCount} / ${totalQuestions}</p>
+                    <p>Calificación: ${finalScore}%</p>
+                    <p>Tiempo de finalización: ${completionTime}</p>
+                `;
+                resultsDiv.style.color = finalScore >= 70 ? '#10b981' : '#dc2626';
+
+                // Save results to Firestore
+                try {
+                    const userId = auth.currentUser.uid;
+                    const scoresRef = collection(db, `artifacts/${appId}/users/${userId}/quiz_results`);
+                    await addDoc(scoresRef, {
+                        studentName,
+                        course,
+                        section,
+                        orderNumber: parseInt(orderNumber, 10),
+                        score: finalScore,
+                        correctAnswers: correctCount,
+                        totalQuestions,
+                        time: completionTime,
+                        timestamp: serverTimestamp()
+                    });
+                } catch (error) {
+                    console.error("Error al guardar la puntuación en Firestore:", error);
+                    resultsDiv.textContent += " (Error al guardar resultados)";
+                } finally {
+                    submitBtn.disabled = false;
+                    submitText.classList.remove('hidden');
+                    submitLoader.classList.add('hidden');
+                }
+            }
+        };
+
+        // Event Listeners for existing functionality
         document.addEventListener('DOMContentLoaded', () => {
+            initializeFirebase();
+            showCurrentActivity();
+
             // --- Logic for the accordion ---
-            const accordionItems = document.querySelectorAll('.accordion-item');
             accordionItems.forEach(item => {
                 item.addEventListener('click', () => {
                     const content = item.nextElementSibling;
@@ -411,45 +617,34 @@
                 });
             });
 
-            // --- Logic for the timeline ---
-            const sections = document.querySelectorAll('main section');
-            const timelineSteps = document.querySelectorAll('.timeline-step');
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.5
+            // --- Logic for navigation buttons ---
+            const showMainMenu = () => {
+                document.getElementById('main-menu').classList.remove('hidden');
+                document.getElementById('inicio').classList.add('hidden');
+                document.getElementById('desarrollo').classList.add('hidden');
+                document.getElementById('cierre').classList.add('hidden');
             };
 
-            const sectionObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const sectionId = entry.target.id;
-                        timelineSteps.forEach(step => {
-                            if (step.id === `step-${sectionId}`) {
-                                step.classList.add('active');
-                            } else {
-                                step.classList.remove('active');
-                            }
-                        });
-                    }
-                });
-            }, observerOptions);
+            const showSection = (sectionId) => {
+                document.getElementById('main-menu').classList.add('hidden');
+                document.getElementById('inicio').classList.add('hidden');
+                document.getElementById('desarrollo').classList.add('hidden');
+                document.getElementById('cierre').classList.add('hidden');
+                document.getElementById(sectionId).classList.remove('hidden');
+            };
 
-            sections.forEach(section => {
-                sectionObserver.observe(section);
+            mainMenuItems.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const targetId = event.target.id.replace('show-', '').replace('-btn', '');
+                    showSection(targetId);
+                });
+            });
+
+            backToMenuButtons.forEach(button => {
+                button.addEventListener('click', showMainMenu);
             });
 
             // --- Logic for the quiz and timer ---
-            const quizTimer = document.getElementById('quiz-timer');
-            const timerDisplay = document.getElementById('timerDisplay');
-            let startTime;
-            let timerInterval;
-
-            const formInputs = document.querySelectorAll('#studentName, #course, #section, #orderNumber');
-            const quizQuestions = document.getElementById('quiz-questions');
-
-            // Event to start the timer and quiz
             formInputs.forEach(input => {
                 input.addEventListener('input', () => {
                     if (!timerInterval) {
@@ -464,62 +659,6 @@
                     }
                 });
             });
-
-            // Function to calculate the score
-            window.calculateScore = function() {
-                clearInterval(timerInterval);
-
-                const studentName = document.getElementById('studentName').value.trim();
-                const course = document.getElementById('course').value.trim();
-                const section = document.getElementById('section').value.trim();
-                const orderNumber = document.getElementById('orderNumber').value.trim();
-                const resultsDiv = document.getElementById('results');
-
-                if (!studentName || !course || !section || !orderNumber) {
-                    resultsDiv.textContent = 'Por favor, complete todos los datos antes de enviar.';
-                    resultsDiv.style.color = '#dc2626';
-                    return;
-                }
-
-                const answers = {
-                    q1: 'B',
-                    q2: 'B',
-                    q3: 'A',
-                    q4: 'B',
-                    q5: 'C',
-                    q6: 'C'
-                };
-                let correctCount = 0;
-                let answeredCount = 0;
-
-                for (let i = 1; i <= Object.keys(answers).length; i++) {
-                    const questionName = `q${i}`;
-                    const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
-                    
-                    if (selectedOption) {
-                        answeredCount++;
-                        if (selectedOption.value === answers[questionName]) {
-                            correctCount++;
-                        }
-                    }
-                }
-
-                if (answeredCount < Object.keys(answers).length) {
-                    resultsDiv.textContent = 'Por favor, responde todas las preguntas.';
-                    resultsDiv.style.color = '#dc2626';
-                } else {
-                    const totalQuestions = Object.keys(answers).length;
-                    const finalScore = Math.round((correctCount / totalQuestions) * 100);
-                    
-                    resultsDiv.innerHTML = `
-                        <p class="mb-2"><strong>Resultados para ${studentName}:</strong></p>
-                        <p>Puntaje: ${correctCount} / ${totalQuestions}</p>
-                        <p>Calificación: ${finalScore}%</p>
-                        <p>Tiempo de finalización: ${timerDisplay.textContent}</p>
-                    `;
-                    resultsDiv.style.color = finalScore >= 70 ? '#10b981' : '#dc2626';
-                }
-            };
         });
     </script>
 </body>
